@@ -5,40 +5,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Visualización de Consumo Cinematográfico 2026</title>
     <style>
+        /* Importamos tipografías elegantes de Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,600&family=Roboto:wght@300;400&display=swap');
+
         body {
-            font-family: Arial, sans-serif;
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #faf8f5;
-            color: #333;
+            font-family: 'Roboto', sans-serif;
+            background-color: #0a0f18; /* Azul noche muy oscuro, estilo cine */
+            color: #e6e6e6;
+            margin: 0;
+            padding: 0;
             line-height: 1.6;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
         }
         header {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 60px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #2a3546;
         }
-        section {
-            margin-bottom: 40px;
-            background: #ffffff;
-            padding: 25px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            color: #e5a93d; /* Dorado elegante */
+            margin-bottom: 10px;
+            letter-spacing: 1px;
         }
         h2 {
-            font-size: 1.25rem;
-            color: #2c3e50;
-            border-left: 4px solid #2196F3;
-            padding-left: 12px;
-            margin-bottom: 20px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: #ffffff;
+            border-left: 4px solid #e5a93d;
+            padding-left: 15px;
+            margin-top: 10px;
+            margin-bottom: 25px;
+        }
+        p.subtitle {
+            font-size: 1.1rem;
+            color: #8b9eb5;
+            font-style: italic;
+        }
+        section {
+            background: #161f2e;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+            margin-bottom: 50px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        section:hover {
+            transform: translateY(-5px); /* Pequeña animación al pasar el mouse */
+            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
         }
         .chart-container {
             text-align: center;
             overflow: hidden;
+            background-color: #ffffff; /* Mantiene los gráficos legibles */
+            border-radius: 8px;
+            padding: 20px;
         }
         .chart-container img {
             width: 100%;
-            max-width: 750px;
+            max-width: 800px;
             height: auto;
             display: block;
             margin: 0 auto;
@@ -46,37 +77,35 @@
     </style>
 </head>
 <body>
+    <div class="container">
+        <header>
+            <h1>Mi Consumo Cinematográfico 2026</h1>
+            <p class="subtitle">Prototipo de visualización interactiva para la presentación académica.</p>
+        </header>
 
-    <header>
-        <h1>Mi Consumo Cinematográfico 2026</h1>
-        <p>Prototipo de visualización de datos personales para la presentación académica.</p>
-    </header>
+        <!-- GRÁFICO 1: FLOURISH -->
+        <section>
+            <h2>Plataformas más utilizadas</h2>
+            <div class="chart-container">
+                <div class="flourish-embed flourish-hierarchy" data-src="visualisation/30107591"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/30107591/thumbnail" width="100%" alt="hierarchy visualization" /></noscript></div>
+            </div>
+        </section>
 
-    <!-- GRÁFICO 1: FLOURISH -->
-    <section>
-        <h2>¿Cuáles son las plataformas que más utilizo para ver películas?</h2>
-        <div class="chart-container">
-            <div class="flourish-embed flourish-hierarchy" data-src="visualisation/30107591"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/30107591/thumbnail" width="100%" alt="hierarchy visualization" /></noscript></div>
-        </div>
-    </section>
+        <!-- GRÁFICO 2: RAWGRAPHS (Sunburst) -->
+        <section>
+            <h2>Géneros cinematográficos de mayor consumo</h2>
+            <div class="chart-container">
+                <img src="Generos_mas_vistos.svg" alt="Diagrama Sunburst de Géneros">
+            </div>
+        </section>
 
-    <!-- GRÁFICO 2: RAWGRAPHS (Sunburst) -->
-    <section>
-        <h2>¿Cuáles son los géneros cinematográficos que más consumo?</h2>
-        <div class="chart-container">
-            <!-- La imagen de RAWGraphs vinculada correctamente -->
-            <img src="Generos_mas_vistos.svg" alt="Diagrama Sunburst de Géneros">
-        </div>
-    </section>
-
-    <!-- GRÁFICO 3: DATAWRAPPER -->
-    <section>
-        <h2>¿Cómo se distribuye la cantidad de películas vistas a lo largo del tiempo y en qué plataformas?</h2>
-        <div class="chart-container">
-            <!-- El código recuperado de DataWrapper -->
-            <iframe title="¿Cómo se distribuye la cantidad de películas vistas a lo largo del tiempo y en qué plataformas?" aria-label="Stacked column chart" id="datawrapper-chart-zquPw" src="https://datawrapper.dwcdn.net/zquPw/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="581" data-external="1"></iframe><script type="text/javascript">(function(){function e(){window.addEventListener(`message`,function(e){if(e.data[`datawrapper-height`]!==void 0){var t=document.querySelectorAll(`iframe`);for(var n in e.data[`datawrapper-height`])for(var r=0,i;i=t[r];r++)if(i.contentWindow===e.source){var a=e.data[`datawrapper-height`][n]+`px`;i.style.height=a}}})}e()})();</script>
-        </div>
-    </section>
-
+        <!-- GRÁFICO 3: DATAWRAPPER -->
+        <section>
+            <h2>Distribución temporal de visualizaciones</h2>
+            <div class="chart-container">
+                <iframe title="¿Cómo se distribuye la cantidad de películas vistas a lo largo del tiempo y en qué plataformas?" aria-label="Stacked column chart" id="datawrapper-chart-zquPw" src="https://datawrapper.dwcdn.net/zquPw/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="581" data-external="1"></iframe><script type="text/javascript">(function(){function e(){window.addEventListener(`message`,function(e){if(e.data[`datawrapper-height`]!==void 0){var t=document.querySelectorAll(`iframe`);for(var n in e.data[`datawrapper-height`])for(var r=0,i;i=t[r];r++)if(i.contentWindow===e.source){var a=e.data[`datawrapper-height`][n]+`px`;i.style.height=a}}})}e()})();</script>
+            </div>
+        </section>
+    </div>
 </body>
 </html>
