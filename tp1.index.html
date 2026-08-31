@@ -57,15 +57,17 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         section:hover {
-            transform: translateY(-5px); /* Pequeña animación al pasar el mouse */
+            transform: translateY(-5px);
             box-shadow: 0 20px 40px rgba(0,0,0,0.8);
         }
         .chart-container {
             text-align: center;
             overflow: hidden;
-            background-color: #ffffff; /* Mantiene los gráficos legibles */
+            background-color: #ffffff; 
             border-radius: 8px;
             padding: 20px;
+            display: flex;
+            justify-content: center;
         }
         .chart-container img {
             width: 100%;
@@ -103,7 +105,7 @@
         <section>
             <h2>Distribución temporal de visualizaciones</h2>
             <div class="chart-container">
-                <iframe title="¿Cómo se distribuye la cantidad de películas vistas a lo largo del tiempo y en qué plataformas?" aria-label="Stacked column chart" id="datawrapper-chart-zquPw" src="https://datawrapper.dwcdn.net/zquPw/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="581" data-external="1"></iframe><script type="text/javascript">(function(){function e(){window.addEventListener(`message`,function(e){if(e.data[`datawrapper-height`]!==void 0){var t=document.querySelectorAll(`iframe`);for(var n in e.data[`datawrapper-height`])for(var r=0,i;i=t[r];r++)if(i.contentWindow===e.source){var a=e.data[`datawrapper-height`][n]+`px`;i.style.height=a}}})}e()})();</script>
+                <iframe title="¿Cómo se distribuye la cantidad de películas vistas a lo largo del tiempo y en qué plataformas?" aria-label="Stacked column chart" id="datawrapper-chart-zquPw" src="https://datawrapper.dwcdn.net/zquPw/1/" scrolling="no" frameborder="0" style="border: none;" width="600" height="581" data-external="1"></iframe>
             </div>
         </section>
     </div>
