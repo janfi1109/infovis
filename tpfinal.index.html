@@ -126,6 +126,9 @@
     }
     figure.viz img, figure.viz object, figure.viz svg { display: block; width: 100%; height: auto; }
     figure.viz iframe { width: 100%; border: 0; }
+    /* Tableau publica el dashboard con tamaño fijo (1000 px): se le da todo el ancho disponible */
+    figure#viz-tableau { margin-left: -20px; margin-right: -20px; padding: 0; overflow-x: auto; }
+    figure#viz-tableau object { margin: 0 auto; }
     .takeaway {
       margin: 22px 0 0; padding: 16px 20px; border-left: 3px solid var(--gold);
       background: var(--panel); border-radius: 0 10px 10px 0; color: var(--soft);
@@ -192,7 +195,7 @@
         </div>
       </div>
       <figure class="viz" id="viz-flourish">
-        <img src="img/tpfinal_1_flourish_carrera.png" alt="Carrera de barras en su cuadro final, con el logo de cada plataforma: Prime Video 19, Disney+ 17, Netflix 16, Cine 13, Stremio 10, Crunchyroll 2.">
+        <div class="flourish-embed flourish-bar-chart-race" data-src="visualisation/30380577"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/30380577/thumbnail" width="100%" alt="bar-chart-race visualization" /></noscript></div>
       </figure>
       <p class="takeaway"><b>Amazon Prime ganó en cantidad: 19 títulos, contra 18 de Disney+ al 27 de septiembre.</b> Disney+ remontó en agosto, con 7 títulos en un solo mes. Crunchyroll quedó último, con apenas 2.</p>
     </section>
@@ -209,7 +212,7 @@
         </div>
       </div>
       <figure class="viz" id="viz-tableau">
-        <img src="img/tpfinal_2_tableau_horas.png" alt="Dashboard: dispersión de títulos vistos contra horas por plataforma, con Crunchyroll como una burbuja grande de 2 títulos y 39,6 horas; debajo, rankings de títulos y horas lado a lado.">
+        <div class='tableauPlaceholder' id='viz1790564110342' style='position: relative'><noscript><a href='#'><img alt='Dashboard 1 ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ho&#47;Horasvstitulosporplataforma2026&#47;Dashboard1&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='Horasvstitulosporplataforma2026&#47;Dashboard1' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ho&#47;Horasvstitulosporplataforma2026&#47;Dashboard1&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='es-ES' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1790564110342');                    var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth > 800 ) { vizElement.style.width='1000px';vizElement.style.height='787px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='1000px';vizElement.style.height='787px';} else { vizElement.style.width='100%';vizElement.style.height='977px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
       </figure>
       <p class="takeaway"><b>Sí, pero por solo una hora: Amazon Prime suma 48,2 h y Disney+ 47,2 h.</b> La sorpresa es Crunchyroll: con 2 títulos acumula 39,6 h, casi 20 h por título, y sube del último al tercer puesto. Si miro solo películas, gana Netflix (35,9 h contra 35,8 h).</p>
     </section>
@@ -226,7 +229,7 @@
         </div>
       </div>
       <figure class="viz" id="viz-rawgraphs">
-        <img src="img/tpfinal_3_rawgraphs_aluvial.jpg" alt="Diagrama aluvial: plataformas a la izquierda, géneros al centro y rangos de nota a la derecha.">
+        <object type="image/svg+xml" data="./aluvial_tpfinal.svg" style="aspect-ratio:960/660"></object>
       </figure>
       <p class="takeaway"><b>La ciencia ficción es el género que más veces llega a 9 o 10</b> (4 de 11 títulos). El terror nunca lo logró, y la comedia casi siempre termina entre 5,5 y 8,5.</p>
     </section>
@@ -243,7 +246,7 @@
         </div>
       </div>
       <figure class="viz" id="viz-datawrapper">
-        <img src="img/tpfinal_4_datawrapper_dispersion.png" alt="Dispersión: año de estreno contra nota, con los títulos más altos y más bajos anotados.">
+        <div style="min-height:456px" id="datawrapper-vis-dau9l"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/dau9l/embed.js" charset="utf-8" data-target="#datawrapper-vis-dau9l"></script><noscript><img src="https://datawrapper.dwcdn.net/dau9l/full.png" alt="¿Me gustan más las películas nuevas que los clásicos?" /></noscript></div>
       </figure>
       <p class="takeaway"><b>La tendencia sube apenas: unos 0,16 puntos por década.</b> Lo que marca la diferencia es el cine: 5 de los 13 títulos que vi en sala tienen 9 o más. En streaming, solo 6 de 66.</p>
     </section>
