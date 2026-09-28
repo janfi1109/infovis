@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi 2026 en pantalla · TP final Infovis</title>
+  <meta name="description" content="Exploración visual de las 79 películas y series que vi en 2026: dónde, cuánto tiempo, qué y cuánto me gustó.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #2a0a10;          /* bordó profundo, como una sala a oscuras */
+      --velvet: #6e0f1d;      /* rojo terciopelo de butacas y telón */
+      --velvet-2: #4a0a14;
+      --panel: #3b1118;
+      --line: #6b2a33;
+      --text: #fbf1e3;        /* crema cálido */
+      --soft: #f0dcc8;
+      --muted: #dcbca3;
+      --gold: #e5b04a;
+      --cine: #C9A227;
+      --stream: #5B7083;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--text);
+      font-family: 'Roboto', system-ui, sans-serif;
+      font-weight: 300;
+      line-height: 1.65;
+      background:
+        radial-gradient(900px 500px at 50% 0, rgba(229,176,74,.10), transparent 70%),
+        linear-gradient(180deg, #33101a 0%, var(--bg) 40%, #1f070c 100%);
+      background-color: var(--bg);
+    }
+    a { color: var(--gold); }
+    .wrap { max-width: 1040px; margin: 0 auto; padding: 0 20px; }
+
+    /* ---------- Portada: telón de terciopelo ---------- */
+    .hero {
+      position: relative;
+      padding: 96px 0 64px;
+      background:
+        radial-gradient(700px 320px at 50% 0, rgba(255,214,140,.22), transparent 70%),
+        linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,0) 30%, rgba(0,0,0,.45)),
+        repeating-linear-gradient(90deg,
+          var(--velvet-2) 0px, var(--velvet) 22px, #8a1526 34px, var(--velvet) 46px, var(--velvet-2) 68px);
+      border-bottom: 3px solid var(--gold);
+    }
+    /* luces de marquesina */
+    .hero::after {
+      content: ""; position: absolute; left: 0; right: 0; bottom: -12px; height: 20px;
+      background: radial-gradient(circle, #ffe7a8 0 3px, rgba(229,176,74,.55) 4px, transparent 6px) 0 50% / 26px 20px repeat-x;
+    }
+    .kicker {
+      font-size: .8rem; letter-spacing: .22em; text-transform: uppercase;
+      color: var(--gold); font-weight: 500; margin: 0 0 14px;
+    }
+    h1 {
+      font-family: 'Playfair Display', serif; font-weight: 800;
+      font-size: clamp(2.4rem, 6vw, 4.2rem); line-height: 1.05;
+      margin: 0 0 18px; letter-spacing: -.01em;
+      text-shadow: 0 2px 18px rgba(0,0,0,.45);
+    }
+    h1 em { color: var(--gold); font-style: italic; font-weight: 600; }
+    .lede { font-size: 1.15rem; color: var(--soft); max-width: 680px; margin: 0; text-shadow: 0 1px 8px rgba(0,0,0,.5); }
+
+    .stats {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1px; margin-top: 44px;
+      background: rgba(229,176,74,.45); border: 1px solid rgba(229,176,74,.6); border-radius: 12px; overflow: hidden;
+    }
+    .stat { background: rgba(35,8,13,.88); padding: 20px 18px; }
+    .stat b {
+      display: block; font-family: 'Playfair Display', serif; font-weight: 600;
+      font-size: 2.1rem; line-height: 1.1; color: var(--gold);
+    }
+    .stat span { font-size: .85rem; color: var(--soft); }
+
+    /* ---------- Índice ---------- */
+    nav.toc {
+      position: sticky; top: 0; z-index: 5; margin-top: 12px;
+      background: rgba(42,10,16,.94); backdrop-filter: blur(6px);
+      border-bottom: 1px solid var(--line);
+    }
+    nav.toc ol {
+      list-style: none; margin: 0 auto; padding: 0 20px; max-width: 1040px;
+      display: flex; gap: 6px; overflow-x: auto;
+    }
+    nav.toc a {
+      display: block; padding: 14px 12px; white-space: nowrap;
+      color: var(--muted); text-decoration: none; font-size: .9rem;
+    }
+    nav.toc a:hover { color: var(--text); }
+    nav.toc a b { color: var(--gold); font-weight: 500; margin-right: 6px; }
+
+    /* ---------- Capítulos ---------- */
+    section.chapter { padding: 72px 0 24px; }
+    .chapter-head { display: grid; grid-template-columns: 90px 1fr; gap: 8px 24px; align-items: start; }
+    .num {
+      font-family: 'Playfair Display', serif; font-size: 4rem; line-height: .9;
+      color: transparent; -webkit-text-stroke: 1px var(--gold);
+    }
+    .eyebrow { font-size: .78rem; letter-spacing: .18em; text-transform: uppercase; color: var(--gold); margin: 6px 0 4px; }
+    h2 {
+      font-family: 'Playfair Display', serif; font-weight: 600;
+      font-size: clamp(1.6rem, 3.4vw, 2.3rem); line-height: 1.15; margin: 0 0 12px;
+    }
+    .chapter-head p { margin: 0; color: var(--soft); max-width: 720px; }
+    .tool {
+      display: inline-flex; align-items: center; gap: 8px;
+      margin-top: 14px; padding: 4px 12px; border-radius: 999px;
+      border: 1px solid var(--line); background: var(--panel);
+      font-size: .8rem; color: var(--muted);
+    }
+    .tool i { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); display: inline-block; }
+
+    /* la "pantalla": marco dorado alrededor de cada gráfico */
+    figure.viz {
+      margin: 28px 0 0; background: #fff; color: #222;
+      border-radius: 10px; padding: 16px; overflow: hidden;
+      border: 3px solid var(--gold);
+      box-shadow: 0 0 0 6px rgba(229,176,74,.12), 0 24px 50px rgba(0,0,0,.55);
+    }
+    figure.viz img, figure.viz object, figure.viz svg { display: block; width: 100%; height: auto; }
+    figure.viz iframe { width: 100%; border: 0; }
+    .takeaway {
+      margin: 22px 0 0; padding: 16px 20px; border-left: 3px solid var(--gold);
+      background: var(--panel); border-radius: 0 10px 10px 0; color: var(--soft);
+    }
+    .takeaway b { color: #fff; font-weight: 500; }
+
+    /* ---------- Cierre ---------- */
+    .closing { padding: 80px 0 40px; }
+    .closing h2 { margin-bottom: 24px; }
+    .findings { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; }
+    .finding { background: var(--panel); border: 1px solid var(--line); border-top: 3px solid var(--gold); border-radius: 12px; padding: 20px; }
+    .finding b { display: block; font-family: 'Playfair Display', serif; font-size: 1.15rem; color: var(--gold); margin-bottom: 6px; font-weight: 600; }
+    .finding p { margin: 0; font-size: .95rem; color: var(--soft); }
+
+    footer { padding: 28px 0 56px; font-size: .88rem; color: var(--muted); border-top: 1px solid var(--line); }
+
+    @media (max-width: 640px) {
+      .hero { padding: 56px 0 44px; }
+      .chapter-head { grid-template-columns: 1fr; }
+      .num { font-size: 2.8rem; }
+      figure.viz { padding: 8px; border-radius: 8px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="hero">
+    <div class="wrap">
+      <p class="kicker">Infovis 2C 2026 · Visualización de datos personales</p>
+      <h1>Mi 2026 <em>en pantalla</em></h1>
+      <p class="lede">Anoté cada película y serie que vi este año: dónde la vi, cuánto duró, de qué género era y qué nota le puse. Estas son las cuatro preguntas que le hice a ese registro.</p>
+
+      <div class="stats" role="list">
+        <div class="stat" role="listitem"><b>79</b><span>registros entre enero y septiembre</span></div>
+        <div class="stat" role="listitem"><b>≈227 h</b><span>frente a una pantalla</span></div>
+        <div class="stat" role="listitem"><b>7,2</b><span>nota promedio (de 1 a 10)</span></div>
+        <div class="stat" role="listitem"><b>5</b><span>títulos que vi dos veces</span></div>
+        <div class="stat" role="listitem"><b>0</b><span>títulos en todo junio</span></div>
+      </div>
+    </div>
+  </header>
+
+  <nav class="toc" aria-label="Capítulos">
+    <ol>
+      <li><a href="#donde"><b>1</b>Dónde veo más</a></li>
+      <li><a href="#tiempo"><b>2</b>Dónde paso más tiempo</a></li>
+      <li><a href="#que"><b>3</b>Qué y cuánto</a></li>
+      <li><a href="#nuevas"><b>4</b>Nuevas vs. clásicas</a></li>
+      <li><a href="#conclusiones">Conclusiones</a></li>
+    </ol>
+  </nav>
+
+  <main class="wrap">
+
+    <!-- 1 · FLOURISH -->
+    <section class="chapter" id="donde">
+      <div class="chapter-head">
+        <div class="num">01</div>
+        <div>
+          <p class="eyebrow">Dónde veo más</p>
+          <h2>¿Qué plataforma ganó la carrera de mi año?</h2>
+          <p>Cada barra suma los títulos que vi en esa plataforma, semana a semana.</p>
+          <span class="tool"><i></i>Flourish · carrera de barras animada</span>
+        </div>
+      </div>
+      <figure class="viz" id="viz-flourish">
+        <img src="img/tpfinal_1_flourish_carrera.png" alt="Carrera de barras en su cuadro final, con el logo de cada plataforma: Prime Video 19, Disney+ 17, Netflix 16, Cine 13, Stremio 10, Crunchyroll 2.">
+      </figure>
+      <p class="takeaway"><b>Amazon Prime ganó en cantidad: 19 títulos, contra 18 de Disney+ al 27 de septiembre.</b> Disney+ remontó en agosto, con 7 títulos en un solo mes. Crunchyroll quedó último, con apenas 2.</p>
+    </section>
+
+    <!-- 2 · TABLEAU PUBLIC -->
+    <section class="chapter" id="tiempo">
+      <div class="chapter-head">
+        <div class="num">02</div>
+        <div>
+          <p class="eyebrow">Dónde paso más tiempo</p>
+          <h2>¿Realmente Amazon Prime es la plataforma donde paso más tiempo?</h2>
+          <p>Ver más títulos no es lo mismo que pasar más horas. Cada burbuja cruza la cantidad de títulos con las horas totales, y su tamaño muestra cuántas horas le dediqué a cada título.</p>
+          <span class="tool"><i></i>Tableau Public · dashboard interactivo</span>
+        </div>
+      </div>
+      <figure class="viz" id="viz-tableau">
+        <img src="img/tpfinal_2_tableau_horas.png" alt="Dashboard: dispersión de títulos vistos contra horas por plataforma, con Crunchyroll como una burbuja grande de 2 títulos y 39,6 horas; debajo, rankings de títulos y horas lado a lado.">
+      </figure>
+      <p class="takeaway"><b>Sí, pero por solo una hora: Amazon Prime suma 48,2 h y Disney+ 47,2 h.</b> La sorpresa es Crunchyroll: con 2 títulos acumula 39,6 h, casi 20 h por título, y sube del último al tercer puesto. Si miro solo películas, gana Netflix (35,9 h contra 35,8 h).</p>
+    </section>
+
+    <!-- 3 · RAWGRAPHS -->
+    <section class="chapter" id="que">
+      <div class="chapter-head">
+        <div class="num">03</div>
+        <div>
+          <p class="eyebrow">Qué y cuánto</p>
+          <h2>¿Qué camino recorre lo que veo: desde dónde lo veo hasta cuánto me gusta?</h2>
+          <p>Cada flujo es un grupo de títulos que va de la plataforma al género y termina en la nota que le puse. Cuanto más grueso, más títulos.</p>
+          <span class="tool"><i></i>RAWGraphs · diagrama aluvial</span>
+        </div>
+      </div>
+      <figure class="viz" id="viz-rawgraphs">
+        <img src="img/tpfinal_3_rawgraphs_aluvial.jpg" alt="Diagrama aluvial: plataformas a la izquierda, géneros al centro y rangos de nota a la derecha.">
+      </figure>
+      <p class="takeaway"><b>La ciencia ficción es el género que más veces llega a 9 o 10</b> (4 de 11 títulos). El terror nunca lo logró, y la comedia casi siempre termina entre 5,5 y 8,5.</p>
+    </section>
+
+    <!-- 4 · DATAWRAPPER -->
+    <section class="chapter" id="nuevas">
+      <div class="chapter-head">
+        <div class="num">04</div>
+        <div>
+          <p class="eyebrow">Nuevas vs. clásicas</p>
+          <h2>¿Me gustan más las películas nuevas que los clásicos?</h2>
+          <p>Año de estreno contra mi nota. En dorado, lo que vi en el cine.</p>
+          <span class="tool"><i></i>Datawrapper · dispersión anotada</span>
+        </div>
+      </div>
+      <figure class="viz" id="viz-datawrapper">
+        <img src="img/tpfinal_4_datawrapper_dispersion.png" alt="Dispersión: año de estreno contra nota, con los títulos más altos y más bajos anotados.">
+      </figure>
+      <p class="takeaway"><b>La tendencia sube apenas: unos 0,16 puntos por década.</b> Lo que marca la diferencia es el cine: 5 de los 13 títulos que vi en sala tienen 9 o más. En streaming, solo 6 de 66.</p>
+    </section>
+
+    <!-- CIERRE -->
+    <section class="closing" id="conclusiones">
+      <h2>Lo que aprendí de mi propio año</h2>
+      <div class="findings">
+        <div class="finding"><b>Cantidad no es tiempo</b><p>Amazon Prime gana en títulos y, por muy poco, también en horas. Pero una sola serie de anime alcanzó para poner a Crunchyroll tercero en tiempo.</p></div>
+        <div class="finding"><b>Ninguna plataforma domina</b><p>Amazon, Disney+ y Netflix terminaron separadas por apenas 2 títulos, y si cuento solo películas el ganador en horas cambia. Además soy de rachas: junio quedó en cero.</p></div>
+        <div class="finding"><b>El cine es una apuesta segura</b><p>Voy a la sala por estrenos (12 de 13 son de 2025-26) y casi siempre salgo contento.</p></div>
+        <div class="finding"><b>La época importa poco</b><p>Los clásicos anteriores al 2000 promedian 5,7, pero la línea de tendencia casi no sube. Pesa más el género que el año.</p></div>
+      </div>
+
+    </section>
+  </main>
+
+  <footer class="wrap">Registro manual en Peliculas 2026.xlsx (1/1 al 27/9/2026)</footer>
+
+</body>
+</html>
